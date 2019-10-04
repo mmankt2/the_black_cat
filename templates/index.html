@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>The Black Cat</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/foundation.min.css')}}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Paul "The Black Cat" Littleton</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="#">Boxing (in progress)</a></li>
+        <li><a href="/login_register/0">Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- First Container -->
+<div class="container-fluid bg-1 text-center">
+  <h3 class="margin">Who Am I?</h3>
+  <img src="{{url_for('static',filename='img/sweaty-mirror.jpeg')}}" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350">
+  
+  <h3>The Black Cat</h3>
+</div>
+
+<!-- Second Container -->
+<div class="container-fluid bg-2 text-center">
+  <h3 class="margin">More about me</h3>
+  <div class='iframe-container'><iframe class='thumbnail' src="https://player.vimeo.com/video/41887099" alt="Please connect to the internet for video to play" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+  <p class="hidden"><a class="hidden" href="https://vimeo.com/41887099">Uphill fight, Paul Littleton battled through troubled youth to become champion boxer.</a> from <a href="https://vimeo.com/user11647450">Tim Escolin</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+  <p>I grew up in group homes, and was fortunate to have my big sisters, and some wonderful adult role models in the mix of all the corruption.  I overcame the challenges thrown at me in the group homes to become a 3 time Golden Glove champion and professional boxer with a 10-0 record.  My current lifestage also brings many challenges and rewards, so I'm excited to share it with all of you. </p>
+  <p>PAUL LITTLETON</p>
+  <!--<a href="#" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-search"></span> Search
+  </a>-->
+</div>
+  
+<!-- Third Container (Grid) -->
+<div class="container-fluid bg-3 text-center">    
+  <h3 class="margin">Where To Find Me?</h3><br>
+  <div class="row">
+    <div class="col-sm-4">
+      <p>Finding inner peace, practicing unity with all things.</p>
+      <img src="{{url_for('static',filename='img/buddha_peace_paul2.jpg')}}" class="img-responsive margin" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-4"> 
+      <p>In the boxing gym, home fitness center, outdoor park training myself or my clients.</p>
+      
+      <img src="{{url_for('static',filename='img/sweaty-mirror.jpeg')}}" class="img-responsive margin" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-4"> 
+      <p>Playing with the pups and the wife, keeping everyone happy and healthy.</p>
+      <img src="{{url_for('static',filename='img/acro-kiss.jpg')}}" class="img-responsive margin" style="width:100%" alt="Image">
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center">
+  <p class="hidden">Bootstrap Theme Made By <a href="https://www.w3schools.com">www.w3schools.com</a></p> 
+  <div class="row">
+      <ul class="col-sm-12 nav navbar-nav navbar-right">
+          {% if 'id' in session %}
+          <li><a href="/myaccount/{{session.id}}">My Account</a></li>
+          <li><a href="/logout">Logout</a></li>
+        {% else %}
+          <li><a href="/login-register/0">Login | Create Account</a></li>
+        {% endif %}
+        <li><a href="https://www.facebook.com/melissa.manktelow/media_set?set=a.10217298506707084&type=3"><img src="{{url_for('static',filename='img/fb-icon.jpg')}}" alt="facebook"></a></li>
+        <li><a href="https://twitter.com/mlittleton2"><img src="{{url_for('static',filename='img/twitter-icon.png')}}" alt="twitter"></a></li>
+        <li><a href="https://www.instagram.com/mlittleton2/"><img src="{{url_for('static',filename='img/ig-icon.jpg')}}" alt="instagram"></a></li>
+        <li><a href="https://www.linkedin.com/in/melissa-littleton-15287b45/"><img src="{{url_for('static',filename='img/linkedin-icon.png')}}" alt="linkedin"></a></li>
+      </ul>
+    </div>
+</footer>
+
+</body>
+</html>

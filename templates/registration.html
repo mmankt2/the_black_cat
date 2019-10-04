@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>The Black Cat | Login</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+  <link rel="stylesheet" type="text/css" media="screen" href="{{url_for('static',filename='css/registration.css')}}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="{{url_for('static',filename='js/main.js')}}"></script>
+</head>
+<body>
+
+
+<!-- Navbar -->
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Paul "The Black Cat" Littleton</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="#">Boxing (in progress)</a></li>
+        {% if 'id' in session %}
+        <li><a href="/myaccount/{{session.id}}">Welcome, {{session.first_name}}</a></li>
+        <li><a href="/logout">Logout</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid bg-1">
+
+  <div id="messages">
+    <p class='fn hidden'>Please enter a first name.</p>
+    <p class='ln hidden'>Please enter a last name.</p>
+    <p class='email hidden'>Please enter a valid email address.</p>
+    <p class='password hidden'>Password must have at least 8 characters, one uppercase, one lowercase, and one number.</p>
+    <p class='cpassword hidden'>Passwords don't match.</p>
+    <div class='flash-messages'>
+    {% with messages = get_flashed_messages() %}
+      <!-- declare a variable called messages -->
+      {% if messages %}
+      <!-- check if there are any messages -->
+        {% for message in messages %}
+      <!-- loop through the messages -->
+          <p>{{message}}</p>
+      <!-- display each message in a paragraph tag -->
+        {% endfor %} 
+      {% endif %}
+    {% endwith %}
+    </div>
+  </div>
+  <div class="panel panel-default col-sm-12">
+    <div class="panel-heading bg-3">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#registration-form">New User</a></li>
+      <li><a data-toggle="tab" href="#login-form">Login</a></li>
+    </ul>
+    </div>
+    
+    <div class="tab-content panel-body">
+      <form action="/register" method="POST" id='registration-form' class="bg-3 tab-pane active">
+      <h3>Create an Account</h3>
+      <p> <label for="fn">First Name</label>
+        <input type="text" name="first_name" id="fn" class="form-control">
+      </p>
+      <p><label for="ln">Last Name</label>
+        <input type="text" name="last_name" id="ln" class="form-control">
+      </p>
+      <p>
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" class="form-control">
+      </p>
+      <p>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" class="form-control">
+      </p>
+      <p>
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" name="confirm_password" id="confirm_password" class="form-control">
+      </p>
+      <p>
+        <input type="submit" value="Register" id="btnSubmit">
+      </p>
+    </form>
+
+    <form action="/login" method="POST" id="login-form" class="bg-3 tab-pane">
+      <h3>Login</h3>
+      <p>
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" class="form-control">
+      </p>
+      <p>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" class="form-control">
+      </p>
+      <p>
+        <input type="submit" value="Login">
+      </p>
+    </form>
+    </div> <!--tab content-->
+    </div><!--end of panel-default-->
+
+  </div><!--end of container-fluid -->
+
+  <!-- Footer -->
+  <footer class="container-fluid bg-3 text-center">
+    <p class="hidden">Bootstrap Theme Made By <a href="https://www.w3schools.com">www.w3schools.com</a></p> 
+  </footer>
+</body>
+</html>
