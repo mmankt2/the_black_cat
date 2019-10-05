@@ -25,8 +25,13 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/">Home</a></li>
-        <li><a href="#">Boxing (in progress)</a></li>
-        <li><a href="/login_register/0">Login</a></li>
+        <li><a href="#">Boxing</a></li>
+        {% if 'id' in session %}
+        <li><a href="/my_account">Welcome, {{session.first_name}}</a></li>
+        <li><a href="/logout">Logout</a></li>
+        {% else %}
+        <li><a href="/login_register/0">Login | Create Account</a></li>
+        {% endif %}
       </ul>
     </div>
   </div>
@@ -88,7 +93,20 @@
 </div>
 
 <footer class="container-fluid">
-  <p>Footer Text</p>
+  <div class="row">
+    <ul class="col-sm-12 nav navbar-nav navbar-right">
+        {% if 'id' in session %}
+        <li><a href="/my_account">My Account</a></li>
+        <li><a href="/logout">Logout</a></li>
+      {% else %}
+        <li><a href="/login-register/0">Login | Create Account</a></li>
+      {% endif %}
+      <li><a href="https://www.facebook.com/melissa.manktelow/media_set?set=a.10217298506707084&type=3"><img src="{{url_for('static',filename='img/fb-icon.jpg')}}" alt="facebook"></a></li>
+      <li><a href="https://twitter.com/mlittleton2"><img src="{{url_for('static',filename='img/twitter-icon.png')}}" alt="twitter"></a></li>
+      <li><a href="https://www.instagram.com/mlittleton2/"><img src="{{url_for('static',filename='img/ig-icon.jpg')}}" alt="instagram"></a></li>
+      <li><a href="https://www.linkedin.com/in/melissa-littleton-15287b45/"><img src="{{url_for('static',filename='img/linkedin-icon.png')}}" alt="linkedin"></a></li>
+    </ul>
+  </div>
 </footer>
 
 </body>

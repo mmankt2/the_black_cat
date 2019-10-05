@@ -31,10 +31,12 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/">Home</a></li>
         <li><a href="/blog">Blog</a></li>
-        <li><a href="#">Boxing (in progress)</a></li>
+        <li><a href="#">Boxing</a></li>
         {% if 'id' in session %}
-        <li><a href="/myaccount/{{session.id}}">Welcome, {{session.first_name}}</a></li>
+        <li><a href="/my_account">Welcome, {{session.first_name}}</a></li>
         <li><a href="/logout">Logout</a></li>
+        {% else %}
+        <li><a href="/login_register/0">Login | Create Account</a></li>
         {% endif %}
       </ul>
     </div>
@@ -72,7 +74,7 @@
     </div>
     
     <div class="tab-content panel-body">
-      <form action="/register" method="POST" id='registration-form' class="bg-3 tab-pane active">
+      <form action="/register/{{flag}}" method="POST" id='registration-form' class="bg-3 tab-pane active">
       <h3>Create an Account</h3>
       <p> <label for="fn">First Name</label>
         <input type="text" name="first_name" id="fn" class="form-control">
@@ -97,7 +99,7 @@
       </p>
     </form>
 
-    <form action="/login" method="POST" id="login-form" class="bg-3 tab-pane">
+    <form action="/login/{{flag}}" method="POST" id="login-form" class="bg-3 tab-pane">
       <h3>Login</h3>
       <p>
         <label for="email">Email</label>
@@ -119,6 +121,20 @@
   <!-- Footer -->
   <footer class="container-fluid bg-3 text-center">
     <p class="hidden">Bootstrap Theme Made By <a href="https://www.w3schools.com">www.w3schools.com</a></p> 
+    <div class="row">
+      <ul class="col-sm-12 nav navbar-nav navbar-right">
+          {% if 'id' in session %}
+          <li><a href="/my_account">My Account</a></li>
+          <li><a href="/logout">Logout</a></li>
+        {% else %}
+          <li><a href="/login-register/0">Login | Create Account</a></li>
+        {% endif %}
+        <li><a href="https://www.facebook.com/melissa.manktelow/media_set?set=a.10217298506707084&type=3"><img src="{{url_for('static',filename='img/fb-icon.jpg')}}" alt="facebook"></a></li>
+        <li><a href="https://twitter.com/mlittleton2"><img src="{{url_for('static',filename='img/twitter-icon.png')}}" alt="twitter"></a></li>
+        <li><a href="https://www.instagram.com/mlittleton2/"><img src="{{url_for('static',filename='img/ig-icon.jpg')}}" alt="instagram"></a></li>
+        <li><a href="https://www.linkedin.com/in/melissa-littleton-15287b45/"><img src="{{url_for('static',filename='img/linkedin-icon.png')}}" alt="linkedin"></a></li>
+      </ul>
+    </div>
   </footer>
 </body>
 </html>

@@ -1,7 +1,7 @@
 from flask import render_template, redirect, request, session, flash, jsonify	# we now need fewer imports because we're not doing everything in this file!
 # if we need to work with the database, we'll need those imports:    
 from config import db, bcrypt
-from models import User
+from models import User, Blog, Comment, Blog_Like, Comment_Like
 import json, os
 
 def landing():
@@ -50,8 +50,6 @@ def login(flag=0):#flag = 1 if the user is trying to place an order. otherwise f
         session['user_email'] = form_email
         session['first_name'] = instance_of_user.f_name
         session['id'] = instance_of_user.id
-        if flag=='1':
-          return redirect('/place_order')
         return redirect('/my_account')
       else:
         flash('Password or email is incorrect.')
@@ -96,13 +94,8 @@ def register(flag=0): #flag = 1 if the user is trying to place an order. otherwi
     session['id'] = instance_of_user.id
     if flag=='1':
       return redirect('/place_order')
-  return redirect('/my_account')
+  return redirect('/')
 
 def my_account():
   instance_of_user = User.query.get(session['id'])
-  all_orders = instance_of_user.user_orders
-  print(all_orders)
-  products = list()
-  for order in all_orders:
-    print(order.products_in_this_order)
-  return render_template('myaccount.html', user=instance_of_user, all_orders = all_orders)
+  return render_template('myaccount.html', user=instance_of_user)

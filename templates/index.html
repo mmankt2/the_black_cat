@@ -28,8 +28,13 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/blog">Blog</a></li>
-        <li><a href="#">Boxing (in progress)</a></li>
-        <li><a href="/login_register/0">Login</a></li>
+        <li><a href="#">Boxing</a></li>
+        {% if 'id' in session %}
+        <li><a href="/my_account">Welcome, {{session.first_name}}</a></li>
+        <li><a href="/logout">Logout</a></li>
+        {% else %}
+        <li><a href="/login_register/0">Login | Create Account</a></li>
+        {% endif %}
       </ul>
     </div>
   </div>
@@ -81,7 +86,7 @@
   <div class="row">
       <ul class="col-sm-12 nav navbar-nav navbar-right">
           {% if 'id' in session %}
-          <li><a href="/myaccount/{{session.id}}">My Account</a></li>
+          <li><a href="/my_account">My Account</a></li>
           <li><a href="/logout">Logout</a></li>
         {% else %}
           <li><a href="/login-register/0">Login | Create Account</a></li>
