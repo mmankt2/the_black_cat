@@ -54,7 +54,7 @@ class Comment_Like(db.Model):
   __tablename__ = "comment_likes"
   id = db.Column(Integer, primary_key=True)
   author_id = db.Column(Integer, ForeignKey('users.id'))
-  comment_id = db.Column(Integer, ForeignKey('blogs.id'))
+  comment_id = db.Column(Integer, ForeignKey('comments.id'))
   created_at = db.Column(DateTime, server_default=func.now())
   updated_at  = db.Column(DateTime, server_default=func.now(), onupdate=func.now())
 

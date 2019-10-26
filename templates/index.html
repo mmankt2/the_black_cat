@@ -50,10 +50,10 @@
 
 <!-- Second Container -->
 <div class="container-fluid bg-2 text-center">
-  <h3 class="margin">More about me</h3>
-  <div class='iframe-container'><iframe class='thumbnail' src="https://player.vimeo.com/video/41887099" alt="Please connect to the internet for video to play" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+  <h3>More about me</h3>
+  <iframe src="https://player.vimeo.com/video/41887099" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
   <p class="hidden"><a class="hidden" href="https://vimeo.com/41887099">Uphill fight, Paul Littleton battled through troubled youth to become champion boxer.</a> from <a href="https://vimeo.com/user11647450">Tim Escolin</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
-  <p>I grew up in group homes, and was fortunate to have my big sisters, and some wonderful adult role models in the mix of all the corruption.  I overcame the challenges thrown at me in the group homes to become a 3 time Golden Glove champion and professional boxer with a 10-0 record.  My current lifestage also brings many challenges and rewards, so I'm excited to share it with all of you. </p>
+  <p class="hidden">I grew up in group homes, and was fortunate to have my big sisters, and some wonderful adult role models in the mix of all the corruption.  I overcame the challenges thrown at me in the group homes to become a 3 time Golden Glove champion and professional boxer with a 10-0 record.  My current lifestage also brings many challenges and rewards, so I'm excited to share it with all of you. </p>
   <p>PAUL LITTLETON</p>
   <!--<a href="#" class="btn btn-default btn-lg">
     <span class="glyphicon glyphicon-search"></span> Search
@@ -61,21 +61,20 @@
 </div>
   
 <!-- Third Container (Grid) -->
-<div class="container-fluid bg-3 text-center">    
-  <h3 class="margin">Where To Find Me?</h3><br>
+<div class="container-fluid bg-3 text-center find-me">    
+  <h3>Where To Find Me?</h3><br>
   <div class="row">
     <div class="col-sm-4">
       <p>Finding inner peace, practicing unity with all things.</p>
-      <img src="{{url_for('static',filename='img/buddha_peace_paul2.jpg')}}" class="img-responsive margin" style="width:100%" alt="Image">
+      <img src="{{url_for('static',filename='img/buddha_peace_paul2.jpg')}}" class="img-responsive margin thumbnail" alt="Peace">
     </div>
     <div class="col-sm-4"> 
       <p>In the boxing gym, home fitness center, outdoor park training myself or my clients.</p>
-      
-      <img src="{{url_for('static',filename='img/sweaty-mirror.jpeg')}}" class="img-responsive margin" style="width:100%" alt="Image">
+      <img src="{{url_for('static',filename='img/sweaty-mirror.jpeg')}}" class="img-responsive margin thumbnail"  alt="Boxing">
     </div>
     <div class="col-sm-4"> 
       <p>Playing with the pups and the wife, keeping everyone happy and healthy.</p>
-      <img src="{{url_for('static',filename='img/acro-kiss.jpg')}}" class="img-responsive margin" style="width:100%" alt="Image">
+      <img src="{{url_for('static',filename='img/acro-kiss.jpg')}}" class="img-responsive margin thumbnail"  alt="Family">
     </div>
   </div>
 </div>
@@ -91,10 +90,9 @@
         {% else %}
           <li><a href="/login-register/0">Login | Create Account</a></li>
         {% endif %}
-        <li><a href="https://www.facebook.com/melissa.manktelow/media_set?set=a.10217298506707084&type=3"><img src="{{url_for('static',filename='img/fb-icon.jpg')}}" alt="facebook"></a></li>
-        <li><a href="https://twitter.com/mlittleton2"><img src="{{url_for('static',filename='img/twitter-icon.png')}}" alt="twitter"></a></li>
-        <li><a href="https://www.instagram.com/mlittleton2/"><img src="{{url_for('static',filename='img/ig-icon.jpg')}}" alt="instagram"></a></li>
-        <li><a href="https://www.linkedin.com/in/melissa-littleton-15287b45/"><img src="{{url_for('static',filename='img/linkedin-icon.png')}}" alt="linkedin"></a></li>
+        <li><a href="https://www.facebook.com/paul.littleton.7359"><img src="{{url_for('static',filename='img/fb-icon.jpg')}}" alt="facebook"></a></li>
+        <li><a href="https://twitter.com/paullittletonko"><img src="{{url_for('static',filename='img/twitter-icon.png')}}" alt="twitter"></a></li>
+        <li><a href="https://www.instagram.com/p.littleton/"><img src="{{url_for('static',filename='img/ig-icon.jpg')}}" alt="instagram"></a></li>
       </ul>
     </div>
 </footer>

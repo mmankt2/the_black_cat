@@ -40,6 +40,7 @@ p {font-size: 16px;}
 iframe {
   margin-left:auto;
   margin-right:auto;
+  width:50%;
 }
 /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
 .row.content {height: 1500px}
@@ -56,14 +57,20 @@ footer {
   color: white;
   padding: 15px;
 }
-
-/* On small screens, set height to 'auto' for sidenav and grid */
+/* On small screens*/
+/*set height to 'auto' for sidenav and grid */
+/*set width of iframe video to take up the whole width*/
 @media screen and (max-width: 767px) {
   .sidenav {
     height: auto;
     padding: 15px;
   }
-  .row.content {height: auto;} 
+  .row.content {
+    height: auto;
+  }
+  iframe{
+    width:100%;
+  }
 }
 .tab-content{
   margin-left:auto;
@@ -78,4 +85,13 @@ div.panel-default{
 /*decrease size of icons in the footer */
 li > a > img {
   height:48px;
+}
+.title{
+  background-image:linear-gradient(#555,#f1f1f1);
+  padding:5px;
+}
+div.find-me img {
+  height:150px;
+  margin-left:auto;
+  margin-right:auto;
 }

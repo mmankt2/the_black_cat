@@ -8,6 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+  <!--<script src="{{url_for('static',filename='js/new_comment.js')}}"></script>-->
 </head>
 <body>
 
@@ -40,53 +41,90 @@
 <div class="container-fluid bg-2">
 
     <div class="col-sm-12 bg-3">
-      <h4><small>RECENT POSTS</small></h4>
+      {% if 'id' in session and user.is_admin == 1 %}
+      <form action="/new_blog" method="POST">
+        <div class="form-group">
+          <label for="blog_title">Blog Title</label>
+          <input class="form-control" id="blog_title" name="blog_title" placeholder="Title" required>
+        </div>
+        <div class="form-group">
+          <textarea name="new_blog" id="new_blog" class="form-control" rows="10" placeholder="What's on your mind?" required></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success">Post Blog</button>
+        </div>
+      </form>
       <hr>
-      <h2>Officially Blogging</h2>
-      <h5><span class="glyphicon glyphicon-time"></span> Post by Paul Littleton, Oct 03, 2019.</h5>
-      <h5><span class="label label-success">Lorem</span></h5><br>
-      <p>Melissa and I are making plans!  I'd like to get a few more professional fights under my belt over the next several months.  Goal is to have a 12-0 record by February 2020! The fights will help Melissa and I gain net worth and credibility for when we open our own gym next year.  Lots to do to get ready. Thanks for all your support pals!</p>
+      {% endif %}
+
+      <h4><small>RECENT POSTS</small></h4>
+    
+      {% for blog in all_blogs %}
+      <hr>
+      <h2 class="title">{{blog.title}} - blog #{{blog.id}}</h2>
+      <h5><span class="glyphicon glyphicon-time"></span> Post by {{blog.author}}, {{blog.created_at}}.</h5>
+      <!--maybe put some tags in here-->
+      <!--<h5><span class="label label-success">Lorem</span></h5><br>-->
+      <p>{{blog.content}}</p>
       <hr>
 
-      <h4>Leave a Comment:</h4>
-      <form role="form">
+      {% if 'id' in session %}
+      <h5>Leave a Comment:</h5>
+      <form id="new-comment-form-{{blog.id}}" method="POST" action="/new_comment" blog_id="{{blog.id}}" role="form">
+        <input class="hidden" type="text" name="blog_id" id="blog_id" value="{{blog.id}}">
         <div class="form-group">
-          <textarea class="form-control" rows="3" required></textarea>
+          <textarea name="new_comment" id="new_comment-{{blog.id}}" class="form-control" blog_id="{{blog.id}}" rows="1" required></textarea>
         </div>
-        <button type="submit" class="btn btn-success">Submit</button>
-      </form>
-      <br><br>
+        <div class="form-group">
+          <input type="submit" value="Submit" blog_id="{{blog.id}}" class="btn btn-success">
+        </div>
+      </form> 
+
+      <script type="text/javascript">
+        $(document).ready(function(){
+          var frm = $('#new-comment-form-{{blog.id}}');
+          
+          frm.submit(function(ev){
+            ev.preventDefault();
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function(data){
+                  //alert(data);
+                  $('#new_comment-{{blog.id}}').val('');
+                  $('#comment-text-{{blog.id}}').prepend(data);
+              }
+            });
+          });
+        });
+      </script>
+      {% else %}
+
+      <h5><a href="/login_register/0">Login</a> to leave a comment.</h5>
       
-      <p><span class="badge">2</span> Comments:</p><br>
-      
+      {% endif %}<!--end if id in session for commenting-->
+      {% if blog.comments|length ==1 %}
+      <h5><span class="badge">{{blog.comments|length}}</span> Comment for blog #{{blog.id}}:</h5>
+      {% else %}
+      <h5><span class="badge">{{blog.comments|length}}</span> Comments for blog #{{blog.id}}:</h5>
+      {% endif %}
       <div class="row">
+        <div id="comment-text-{{blog.id}}"></div>  
+        {% for comment in blog.comments %}
+
         <div class="col-sm-2 text-center">
           <img src="bandmember.jpg" class="img-circle" height="65" width="65" alt="Avatar">
         </div>
         <div class="col-sm-10">
-          <h4>Klover <small>Oct 03, 2019 9:12 PM</small></h4>
-          <p>Keep up the GREAT work! I am cheering for you!!</p>
-          <br>
+          <h4>{{session.first_name}} on <small>{{comment.created_at}}</small></h4>
+          <p>{{comment.content}}</p>
         </div>
-        <div class="col-sm-2 text-center">
-          <img src="{{url_for('static',filename='img/puma-silhouette-banner.jpg')}}" class="img-circle" height="65" width="65" alt="Avatar">
-        </div>
-        <div class="col-sm-10">
-          <h4>True <small>Oct 03, 2019, 8:25 PM</small></h4>
-          <p>I am so happy for you man! Don't forget to think of me when you make it big!</p>
-          <br>
-          <p><span class="badge">1</span> Comment:</p><br>
-          <div class="row">
-            <div class="col-sm-2 text-center">
-              <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-            </div>
-            <div class="col-xs-10">
-              <h4>Klover <small>Oct 03, 2019, 8:28 PM</small></h4>
-              <p>Me too! WOW!</p>
-              <br>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
+      </div>      
+
+      {% endfor %}
+      
       </div>
     </div>
   </div>
@@ -108,6 +146,6 @@
     </ul>
   </div>
 </footer>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </html>
