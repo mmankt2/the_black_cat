@@ -58,6 +58,25 @@ class Comment_Like(db.Model):
   created_at = db.Column(DateTime, server_default=func.now())
   updated_at  = db.Column(DateTime, server_default=func.now(), onupdate=func.now())
 
+class Event(db.Model):
+  __tablename__ = "events"
+  id = db.Column(Integer, primary_key=True)
+  date_time = db.Column(DateTime)
+  event_name = db.Column(String(255))
+  address = db.Column(String(255))
+  details = db.Column(String(500))
+  event_type_id = db.Column(Integer, ForeignKey('event_types.id'))
+  created_at = db.Column(DateTime, server_default=func.now())
+  updated_at  = db.Column(DateTime, server_default=func.now(), onupdate=func.now())
+
+class Event_Type(db.Model):
+  __tablename__ = "event_types"
+  id = db.Column(Integer, primary_key=True)
+  event_type_name = db.Column(String(255))
+  events = relationship("Event",backref="event_types")
+  created_at = db.Column(DateTime, server_default=func.now())
+  updated_at  = db.Column(DateTime, server_default=func.now(), onupdate=func.now())
+
 # class Attachment(db.Model):
 #   __tablename__ = "attachments"
 #   id = db.Column(Integer, primary_key=True)
@@ -96,3 +115,11 @@ class Comment_Like(db.Model):
 # Date/Time Created
 # Date/Time Updated
 # blog_id reference
+
+#events table
+# tells about upcoming and past events, boxing, yoga, etc
+# each event has an id associated with it to tell what type of event
+
+#event_types table
+# id - gives the id to be used in the events table
+# name - 1=professional fight, 2=show fight, 3=free yoga, 4=school $5 yoga

@@ -4,10 +4,17 @@ body {
   color: #f5f6f7;
 }
 p {font-size: 16px;}
+#homepage-first-container img{
+  min-width:80%;
+  background-color:rgb(46, 46, 46);
+}
 .margin {margin-bottom: 45px;}
 .bg-1 { 
-  background-color: #2f2f2f; /* Black Gray */
-  color: #ffffff;
+  background-color: rgb(162, 123, 72); /* dark tan */
+  color: white;
+}
+.bg-4 a, .bg-4 a:hover{
+  color:white !important;
 }
 .bg-2 { 
   background-color: #4f5c77; /* Dark Blue */
@@ -21,26 +28,33 @@ p {font-size: 16px;}
   background-color: #2f2f2f; /* Black Gray */
   color: #fff;
 }
-.container-fluid {
-  padding-top: 70px;
-  padding-bottom: 70px;
+.bg-5 {
+  background-color: rgb(249, 219, 50);/*dark yellow*/
+  color: #555555;
 }
 .navbar {
-  padding-top: 15px;
-  padding-bottom: 15px;
   border: 0;
   border-radius: 0;
   margin-bottom: 0;
   font-size: 12px;
   letter-spacing: 5px;
 }
+.navbar-nav  li a {
+  color: white !important;
+}
 .navbar-nav  li a:hover {
-  color: #1abc9c !important;
+  color: white !important;
 }
 iframe {
   margin-left:auto;
   margin-right:auto;
   width:50%;
+}
+#blog-section{
+  padding:0px;
+}
+.blogs, .comments{
+  padding:10px;
 }
 /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
 .row.content {height: 1500px}
@@ -84,10 +98,15 @@ div.panel-default{
 }
 /*decrease size of icons in the footer */
 li > a > img {
-  height:48px;
+  height:16px;
+  border-radius:4px;
+}
+/*change text color of <a> in footer*/
+footer > div > ul > li > a{
+  color:#999;
 }
 .title{
-  background-image:linear-gradient(#555,#f1f1f1);
+  background-image:linear-gradient(#555,#f1f1f1,#555);
   padding:5px;
 }
 div.find-me img {

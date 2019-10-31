@@ -1,14 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>The Black Cat | Boxing</title>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-  <script src="main.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+  <!--<script src="{{url_for('static',filename='js/new_comment.js')}}"></script>-->
 </head>
 <body>
-  Boxing page
+
+<!-- Navbar -->
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/">Paul "The Black Cat" Littleton</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+        {% if 'id' in session %}
+        <li><a href="/my_account">Welcome, {{session.first_name}}</a></li>
+        <li><a href="/logout">Logout</a></li>
+        {% else %}
+        <li><a href="/login_register/0">Login | Create Account</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid bg-5">
+  <h3>Upcoming Fights</h3>
+  <hr>
+  {% if all_boxing_events|length > 0 %}
+    {% for event in all_boxing_events %}
+    <h4>{{event.event_name}}</h4> 
+    <p>{{event.date_time}}</p>
+    <p>{{event.address}}</p>
+    <p>{{event.details}}</p>
+    <hr>
+    {% endfor %}
+  {% else %}
+  <p>No fight on the schedule right now. Check back later!</p>
+  {% endif %}
+
+</div>
+
+<footer class="container-fluid bg-4 text-center">
+  <p class="hidden">Bootstrap Theme Made By <a href="https://www.w3schools.com">www.w3schools.com</a></p> 
+  <div class=" navbar-collapse">
+    <ul class="nav navbar-nav navbar-left">
+      {% if 'id' in session %}
+      <li><a href="/my_account">My Account</a></li>
+      <li><a href="/logout">Logout</a></li>
+      {% else %}
+      <li><a href="/login-register/0">Login | Create Account</a></li>
+      {% endif %}
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="https://www.facebook.com/paul.littleton.7359"><img src="{{url_for('static',filename='img/fb-icon-2.png')}}" alt="facebook"></a></li>
+      <li><a href="https://twitter.com/paullittletonko"><img src="{{url_for('static',filename='img/twitter-icon-2.png')}}" alt="twitter"></a></li>
+      <li><a href="https://www.instagram.com/p.littleton/"><img src="{{url_for('static',filename='img/ig-icon-2.jpg')}}" alt="instagram"></a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </html>

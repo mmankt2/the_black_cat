@@ -2,11 +2,15 @@ from flask import render_template, redirect, request, session, flash, jsonify	# 
 # if we need to work with the database, we'll need those imports:    
 from config import db, bcrypt
 from sqlalchemy import desc
-from models import User, Blog, Comment, Blog_Like, Comment_Like
+from models import User, Blog, Comment, Blog_Like, Comment_Like, Event, Event_Type
 import json, os
 
 def landing():
   return render_template('index.html')
+
+def boxing_page():
+  list_of_all_events_with_type_1_or_2 = Event.query.order_by((Event.date_time)).all()
+  return render_template('boxing.html',all_boxing_events=list_of_all_events_with_type_1_or_2)
 
 def blog():
   #list_of_all_comments = Comment.query.order_by(desc(Comment.id)).all()

@@ -15,29 +15,28 @@
 <body>
 
 <!--top section collapses on small screens-->
-<!--Nav bar and social section-->
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid bg-1">
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a class="navbar-brand" href="tel:2247147934">CALL US AT 224-714-7934</a></li>
-        <li><a href="https://www.facebook.com/paul.littleton.7359"><img src="{{url_for('static',filename='img/fb-icon-2.png')}}" alt="facebook"></a></li>
-        <li><a href="https://twitter.com/paullittletonko"><img src="{{url_for('static',filename='img/twitter-icon-2.png')}}" alt="twitter"></a></li>
-        <li><a href="https://www.instagram.com/p.littleton/"><img src="{{url_for('static',filename='img/ig-icon-2.jpg')}}" alt="instagram"></a></li>
-      </ul>
+<header class="full_width bg-1">
+  <div class="row">
+    <div class="col-lg-6 col-md-7 col-sm-12">
+      <a href="/">Home</a>
+      <a href="tel:2247147934">CALL US 224-714-7934</a>
     </div>
   </div>
+</header>
 
-  <div class="container-fluid bg-4">
+
+<!-- Navbar -->
+<nav class="navbar navbar-default">
+  <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">The Black Cat</a>
+      <a class="navbar-brand" href="#">Paul "The Black Cat" Littleton</a>
     </div>
-    <div  class="collapse navbar-collapse" id="myNavbar">
+    <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/blog">Blog</a></li>
         <li><a href="/boxing">Boxing</a></li>
@@ -53,9 +52,10 @@
 </nav>
 
 <!-- First Container -->
-<div class="container-fluid text-center" id="homepage-first-container">
+<div class="container-fluid bg-1 text-center" id="homepage-first-container">
   <h3 class="margin">Who Am I?</h3>
-  <img src="{{url_for('static',filename='img/sweaty-mirror.jpeg')}}" class="img-responsive margin" style="display:inline" alt="The Black Cat">
+  <img src="{{url_for('static',filename='img/sweaty-mirror.jpeg')}}" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350">
+  
   <h3>The Black Cat</h3>
 </div>
 
